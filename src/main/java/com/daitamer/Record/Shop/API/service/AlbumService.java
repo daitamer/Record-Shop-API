@@ -12,8 +12,8 @@ import java.util.Optional;
 public interface AlbumService {
 
     List<Album> getAllAlbums();
-//
-//    Album saveAlbum(Album album);
+
+    Album saveAlbum(Album album);
 //
 //    void deleteAlbum(Long id);
 

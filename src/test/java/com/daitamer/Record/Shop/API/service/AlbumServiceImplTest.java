@@ -56,6 +56,8 @@ public class AlbumServiceImplTest {
         //Arrange
         Album album = new Album(1L, "Album 1", "Artist 1", Genre.ROCK, 1960, 10.0);
 
+        when(albumRepository.save(any(Album.class))).thenReturn(album);
+
         //Act
         Album savedAlbum = albumService.saveAlbum(album);
 
@@ -68,9 +70,8 @@ public class AlbumServiceImplTest {
         assertEquals(album.getReleaseYear(), savedAlbum.getReleaseYear());
         verify(albumRepository, times(1)).save(album);
 
-
-
     }
+
 
 
 
