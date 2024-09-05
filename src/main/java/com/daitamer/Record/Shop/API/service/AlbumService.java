@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public interface AlbumService {
 
-//    List<Album> getAllAlbums();
+    List<Album> getAllAlbums();
 //
 //    Album saveAlbum(Album album);
 //
