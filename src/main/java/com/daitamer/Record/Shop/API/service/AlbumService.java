@@ -1,7 +1,22 @@
 package com.daitamer.Record.Shop.API.service;
 
+import com.daitamer.Record.Shop.API.model.Album;
+import com.daitamer.Record.Shop.API.repository.AlbumRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
-public class AlbumService {
+public interface AlbumService {
+
+//    List<Album> getAllAlbums();
+//
+//    Optional<Album> getAllAlbums();
+//
+//    Album saveAlbum(Album album);
+//
+//    void deleteAlbum(Long id);
+
 }
