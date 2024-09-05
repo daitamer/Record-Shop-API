@@ -14,7 +14,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.*;
 
 public class AlbumServiceImplTest {
 
@@ -46,6 +47,33 @@ public class AlbumServiceImplTest {
         assertEquals(expectedAlbums, actualAlbums);
 
     }
+
+//    saveAlbum()
+
+    @Test
+    void testSaveAlbum() {
+
+        //Arrange
+        Album album = new Album(1L, "Album 1", "Artist 1", Genre.ROCK, 1960, 10.0);
+
+        //Act
+        Album savedAlbum = albumService.saveAlbum(album);
+
+        //Assert
+        assertNotNull(savedAlbum);
+        assertEquals(album.getArtist(), savedAlbum.getArtist());
+        assertEquals(album.getGenre(), savedAlbum.getGenre());
+        assertEquals(album.getTitle(), savedAlbum.getTitle());
+        assertEquals(album.getPrice(), savedAlbum.getPrice());
+        assertEquals(album.getReleaseYear(), savedAlbum.getReleaseYear());
+        verify(albumRepository, times(1)).save(album);
+
+
+
+    }
+
+
+
 
 
 }
