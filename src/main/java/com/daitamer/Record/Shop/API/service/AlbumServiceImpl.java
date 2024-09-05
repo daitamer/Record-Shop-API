@@ -11,10 +11,10 @@ public class AlbumServiceImpl implements AlbumService {
     @Autowired
     private AlbumRepository albumRepository;
 
-//    @Override
-//    public List<Album> getAllAlbums() {
-//        return albumRepository.findAll();
-//    }
+    @Override
+    public List<Album> getAllAlbums() {
+        return albumRepository.findAll();
+    }
 //
 //    @Override
 //    public Album saveAlbum(Album album) {
