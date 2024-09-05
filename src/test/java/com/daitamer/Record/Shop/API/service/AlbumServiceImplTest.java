@@ -73,6 +73,19 @@ public class AlbumServiceImplTest {
     }
 
 
+    @Test
+    void testDeleteAlbum(){
+
+    //Arrange
+        Long albumId = 1L;
+
+        //Act
+        albumService.deleteAlbum(albumId);
+
+        //Assert
+        verify(albumRepository, times(1)).deleteById(albumId);
+
+    }
 
 
 
