@@ -2,20 +2,6 @@ package com.daitamer.Record.Shop.API.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
-enum Genre {
-    ROCK,
-    JAZZ,
-    CLASSICAL,
-    ELECTRONIC,
-    POP,
-    COUNTRY,
-    ALTERNATIVE,
-    OTHER
-}
-
 @Entity
 @Table(name = "albums")
 public class Album {
@@ -35,13 +21,22 @@ public class Album {
     private Genre genre;
 
     @Column(name="release_date")
-    private LocalDate releaseDate;
+    private int releaseYear;
 
     @Column(nullable = false)
     private Double price;
 
     public Album(){
 
+    }
+
+    public Album(Long id, String title, String artist, Genre genre, int releaseYear, Double price) {
+        this.id = id;
+        this.title = title;
+        this.artist = artist;
+        this.genre = genre;
+        this.releaseYear = releaseYear;
+        this.price = price;
     }
 
     public Long getId() {
@@ -76,12 +71,12 @@ public class Album {
         this.artist = artist;
     }
 
-    public LocalDate getReleaseDate() {
-        return releaseDate;
+    public int getReleaseYear() {
+        return releaseYear;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
     }
 
     public Double getPrice() {

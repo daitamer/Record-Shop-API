@@ -13,8 +13,6 @@ public interface AlbumService {
 
 //    List<Album> getAllAlbums();
 //
-//    Optional<Album> getAllAlbums();
-//
 //    Album saveAlbum(Album album);
 //
 //    void deleteAlbum(Long id);
