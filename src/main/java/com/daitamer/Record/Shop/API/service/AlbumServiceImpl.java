@@ -24,14 +24,9 @@ public class AlbumServiceImpl implements AlbumService {
     public Album saveAlbum(Album album) {
         return albumRepository.save(album);
     }
-//
-//    @Override
-//    public Album saveAlbum(Album album) {
-//        return null;
-//    }
-//
-//    @Override
-//    public void deleteAlbum(Long id) {
-//
-//    }
+
+    @Override
+    public void deleteAlbum(Long id) {
+        albumRepository.deleteById(id);
+    }
 }
