@@ -4,10 +4,12 @@ import com.daitamer.Record.Shop.API.model.Album;
 import com.daitamer.Record.Shop.API.service.AlbumService;
 import com.daitamer.Record.Shop.API.service.AlbumServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/albums")
@@ -24,17 +26,20 @@ public class AlbumController {
 
 
 //    get album by id
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Album> getAlbumById(@PathVariable Long id){
-//
-//    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Album> getAlbumById(@PathVariable Long id){
+        return albumService.getAlbumById(id)
+                .map(album -> ResponseEntity.ok().body(album))
+                .orElse(ResponseEntity.notFound().build());
+    }
 
-////    create album
-//    @PostMapping
-//    public ResponseEntity<Album> createAlbum(@RequestBody Album album){
-//
-//    }
-//
+//    create album
+    @PostMapping
+    public ResponseEntity<Album> createAlbum(@RequestBody Album album){
+        Album createdAlbum = albumService.saveAlbum(album);
+        return ResponseEntity.status(201).body(createdAlbum);
+    }
+
 ////    update album
 //    @PutMapping
 //    @PostMapping("/{id}")
