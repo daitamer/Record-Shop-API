@@ -23,12 +23,12 @@ public class AlbumController {
     }
 
 
-////    get album by id
+//    get album by id
 //    @GetMapping("/{id}")
 //    public ResponseEntity<Album> getAlbumById(@PathVariable Long id){
 //
 //    }
-//
+
 ////    create album
 //    @PostMapping
 //    public ResponseEntity<Album> createAlbum(@RequestBody Album album){

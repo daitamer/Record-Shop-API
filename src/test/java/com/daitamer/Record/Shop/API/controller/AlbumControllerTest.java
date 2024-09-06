@@ -6,9 +6,8 @@ import com.daitamer.Record.Shop.API.service.AlbumService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -18,9 +17,11 @@ import org.springframework.http.MediaType;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(AlbumController.class)
 public class AlbumControllerTest {
@@ -58,5 +59,26 @@ public class AlbumControllerTest {
         verify(albumService, times(1)).getAllAlbums();
     }
 
+
+    @Test
+    void testGetAlbumById() throws Exception {
+        //arrange
+        given(albumService.getAlbumById(1L)).willReturn(Optional.of(album));
+
+        //act
+        //assert
+
+        mvc.perform(get("/albums/1"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.title").value(album.getTitle()))
+                .andExpect(jsonPath("$.artist").value(album.getArtist()));
+    }
+
+
+    ////    get album by id
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Album> getAlbumById(@PathVariable Long id){
+//    }
 
 }

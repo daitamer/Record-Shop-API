@@ -15,6 +15,8 @@ public interface AlbumService {
 
     Album saveAlbum(Album album);
 
+    Optional<Album> getAlbumById(Long id);
+
     void deleteAlbum(Long id);
 
 }

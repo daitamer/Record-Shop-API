@@ -5,6 +5,7 @@ import com.daitamer.Record.Shop.API.repository.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Optional;
 
 public class AlbumServiceImpl implements AlbumService {
 
@@ -23,6 +24,12 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public Album saveAlbum(Album album) {
         return albumRepository.save(album);
+    }
+
+
+    @Override
+    public Optional<Album> getAlbumById(Long id) {
+        return albumRepository.findById(id);
     }
 
     @Override
