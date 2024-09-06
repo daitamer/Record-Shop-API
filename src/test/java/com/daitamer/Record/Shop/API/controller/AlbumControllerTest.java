@@ -21,7 +21,11 @@ import java.util.Optional;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 @WebMvcTest(AlbumController.class)
 public class AlbumControllerTest {
@@ -67,7 +71,6 @@ public class AlbumControllerTest {
 
         //act
         //assert
-
         mvc.perform(get("/albums/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -75,10 +78,17 @@ public class AlbumControllerTest {
                 .andExpect(jsonPath("$.artist").value(album.getArtist()));
     }
 
-
-    ////    get album by id
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Album> getAlbumById(@PathVariable Long id){
+//    @Test
+//    void testCreateAlbum() throws Exception {
+//
+//        given(albumService.saveAlbum(album)).willReturn(album);
+//
+//        mvc.perform(post("/albums")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(objectMapper.writeValueAsString(album)))
+//                .andExpect(status().isOk())
+//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(content().json(objectMapper.writeValueAsString(album)));
 //    }
 
 }

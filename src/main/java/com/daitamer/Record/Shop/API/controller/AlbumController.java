@@ -40,12 +40,17 @@ public class AlbumController {
         return ResponseEntity.status(201).body(createdAlbum);
     }
 
-////    update album
-//    @PutMapping
-//    @PostMapping("/{id}")
-//    public ResponseEntity<Album> updateAlbum(@PathVariable Long id, @RequestBody Album album){
-//
-//    }
+//    update album
+    @PutMapping("/{id}")
+    public ResponseEntity<Album> updateAlbum(@PathVariable Long id, @RequestBody Album album){
+            return albumService.getAlbumById(id)
+                    .map(existingAlbum -> {
+                        album.setId(id);
+                        Album updatedAlbum = albumService.saveAlbum(album);
+                        return ResponseEntity.ok(updatedAlbum);
+                    })
+                    .orElse(ResponseEntity.notFound().build());
+    }
 //
 ////    delete album by id
 //    @DeleteMapping("/{id}")
