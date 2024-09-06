@@ -15,14 +15,14 @@ public class AlbumController {
 
     @Autowired
     private AlbumService albumService;
-//
-////    get all albums
-//    @GetMapping
-//    public List<Album> getAllAlbums() {
-//
-//    }
-//
-//
+
+//    get all albums
+    @GetMapping
+    public List<Album> getAllAlbums() {
+        return albumService.getAllAlbums();
+    }
+
+
 ////    get album by id
 //    @GetMapping("/{id}")
 //    public ResponseEntity<Album> getAlbumById(@PathVariable Long id){

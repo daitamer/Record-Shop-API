@@ -44,8 +44,8 @@ public class AlbumControllerTest {
     @Test
     void testGetAllAlbums() throws Exception {
         //arrange
-
-        given(albumService.getAllAlbums()).willReturn(List.of(album));
+        List<Album> albums = List.of(album);
+        given(albumService.getAllAlbums()).willReturn(albums);
 
         //act
         //assert
@@ -53,7 +53,7 @@ public class AlbumControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().json(objectMapper.writeValueAsString(album)));
+                .andExpect(content().json(objectMapper.writeValueAsString(albums)));
 
         verify(albumService, times(1)).getAllAlbums();
     }
