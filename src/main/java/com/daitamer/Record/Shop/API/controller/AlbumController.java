@@ -51,12 +51,13 @@ public class AlbumController {
                     })
                     .orElse(ResponseEntity.notFound().build());
     }
-//
-////    delete album by id
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> deleteAlbumById(){
-//
-//    }
+
+//    delete album by id
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteAlbumById(@PathVariable Long id){
+        albumService.deleteAlbum(id);
+        return ResponseEntity.noContent().build();
+    }
 
 
 }
