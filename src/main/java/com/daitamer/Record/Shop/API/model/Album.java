@@ -1,7 +1,9 @@
 package com.daitamer.Record.Shop.API.model;
 
 import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+@EntityScan(basePackages = "com.daitamer.Record.Shop.API.model")
 @Entity
 @Table(name = "albums")
 public class Album {

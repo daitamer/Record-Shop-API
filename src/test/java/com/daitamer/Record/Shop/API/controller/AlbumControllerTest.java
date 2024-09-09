@@ -9,11 +9,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvcBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 
 import java.util.List;
@@ -26,35 +33,40 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
-@WebMvcTest(AlbumController.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 public class AlbumControllerTest {
+
+    @InjectMocks
+    private AlbumController albumController;
 
     @Autowired
     private MockMvc mvc;
 
-    @MockBean
+    @Mock
     private AlbumService albumService;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
     private Album album;
+    private ObjectMapper objectMapper;
 
     @BeforeEach
     void setUp(){
         album = new Album(1L, "Album1", "Artist1", Genre.ROCK, 1969, 10.00);
+        objectMapper = new ObjectMapper();
+        mvc = MockMvcBuilders.standaloneSetup(albumController).build();
     }
 
     @Test
     void testGetAllAlbums() throws Exception {
         //arrange
         List<Album> albums = List.of(album);
-        given(albumService.getAllAlbums()).willReturn(albums);
+//        given(albumService.getAllAlbums()).willReturn(albums);
+
+        when(albumService.getAllAlbums()).thenReturn(albums);
 
         //act
         //assert
-        mvc.perform(get("/albums")
+        this.mvc.perform(MockMvcRequestBuilders.get("http://localhost:8080/albums")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
