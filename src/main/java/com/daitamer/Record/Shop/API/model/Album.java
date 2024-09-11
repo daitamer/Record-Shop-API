@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 public class Album {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -22,7 +22,7 @@ public class Album {
     @Column(nullable = false)
     private Genre genre;
 
-    @Column(name="release_date")
+    @Column(name="release_year")
     private int releaseYear;
 
     @Column(nullable = false)
