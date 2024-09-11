@@ -1,14 +1,14 @@
 # Use base image
-FROM openjdk:21-jdk
+FROM openjdk:21-jdk-slim
 
 # Set working directory in container
 WORKDIR /app
 
-# Copy JAR file into container
-COPY target/record-shop-api.jar /app/record-shop-api.jar
+# Copy the JAR file into the container
+COPY target/Record-Shop-API-0.0.1-SNAPSHOT.jar /app/record-shop-api.jar
 
-# Port on which the application will run
+# Expose the port that the application will run on
 EXPOSE 8080
 
-# Run JAR file
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Define the entry point for the Docker container
+ENTRYPOINT ["java", "-jar", "/app/record-shop-api.jar"]
