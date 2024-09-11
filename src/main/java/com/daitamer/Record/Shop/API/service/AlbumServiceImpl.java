@@ -4,6 +4,8 @@ import com.daitamer.Record.Shop.API.model.Album;
 import com.daitamer.Record.Shop.API.repository.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.cache.annotation.Cacheable;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +14,7 @@ import java.util.Optional;
 public class AlbumServiceImpl implements AlbumService {
 
     @Autowired
-    private AlbumRepository albumRepository;
+    private final AlbumRepository albumRepository;
 
     public AlbumServiceImpl(AlbumRepository albumRepository) {
         this.albumRepository = albumRepository;
@@ -30,7 +32,9 @@ public class AlbumServiceImpl implements AlbumService {
 
 
     @Override
+    @Cacheable(value = "albums", key = "#id")
     public Optional<Album> getAlbumById(Long id) {
+        System.out.println("Fetching album with id " + id + " from the database");
         return albumRepository.findById(id);
     }
 
